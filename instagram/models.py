@@ -208,6 +208,9 @@ class User(ApiModel):
     def __eq__(self, other):
         return self.id == other.id
 
+    def __ne__(self, other):
+        return not self == other
+
 class Relationship(ApiModel):
 
     def __init__(self, incoming_status="none", outgoing_status="none", target_user_is_private=False):
