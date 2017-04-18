@@ -205,6 +205,11 @@ class User(ApiModel):
     def __unicode__(self):
         return "User: %s" % self.username
 
+    def __eq__(self, other):
+        return self.id == other.id
+
+    def __ne__(self, other):
+        return not self == other
 
 class Relationship(ApiModel):
 
