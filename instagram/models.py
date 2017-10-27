@@ -38,6 +38,11 @@ class Image(ApiModel):
 
 class Video(Image):
 
+    def __init__(self, *args, **kwargs):
+        # FIXME: this shows up in the api response, but is always '0'. what is this?
+        self.id = kwargs.pop('id', None)
+        super(Video, self).__init__(*args, **kwargs)
+
     def __unicode__(self):
         return "Video: %s" % self.url
 
@@ -117,7 +122,7 @@ class Media(ApiModel):
         new_media.caption = None
         if entry['caption']:
             new_media.caption = Comment.object_from_dictionary(entry['caption'])
-        
+
         new_media.tags = []
         if entry['tags']:
             for tag in entry['tags']:
