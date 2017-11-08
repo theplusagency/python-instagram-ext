@@ -55,7 +55,7 @@ class Media(ApiModel):
             setattr(self, key, value)
 
     def get_standard_resolution_url(self):
-        if self.type == 'image':
+        if self.type in ['image', 'carousel']:
             return self.images['standard_resolution'].url
         else:
             return self.videos['standard_resolution'].url
